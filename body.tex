@@ -1,0 +1,43 @@
+%% Adds pagebreak between chapters
+% from comments of accepted answer
+% https://superuser.com/questions/601469/getting-chapters-to-start-on-a-new-page-in-a-pandoc-generated-pdf
+\usepackage{sectsty}
+\sectionfont{\clearpage}
+
+% accepted answer gave error
+%\usepackage{titlesec}
+%\newcommand{\sectionbreak}{\clearpage}
+
+%% https://stackoverflow.com/questions/40975004/pandoc-latex-change-backtick-highlight
+\usepackage{fancyvrb,newverbs,xcolor}
+
+\definecolor{Light}{gray}{.90}
+%% https://martin-thoma.com/colors-in-latex/
+%% https://en.wikibooks.org/wiki/LaTeX/Colors
+%%\definecolor{Light}{HTML}{F4F4F4}
+
+\let\oldtexttt\texttt
+\renewcommand{\texttt}[1]{\colorbox{Light}{\oldtexttt{#1}}}
+
+% https://stackoverflow.com/questions/22156999/how-to-change-the-style-of-bullets-in-pandoc-markdown
+\usepackage{enumitem}
+\usepackage{amsfonts}
+
+\setlist[itemize,1]{label=$\bullet$}
+\setlist[itemize,2]{label=$\circ$}
+\setlist[itemize,3]{label=$\star$}
+
+%% \setlist[itemize,2]{label=$\diamond$}
+%% \setlist[itemize,1]{label=$\star$}
+%% \setlist[itemize,1]{label=$\bullet$}
+%% \setlist[itemize,1]{label=$\checkmark$}
+
+% https://tex.stackexchange.com/questions/23235/eliminate-edit-pdf-properties-added-by-pdflatex
+
+\usepackage{hyperref}
+
+\hypersetup{pdftitle={My awesome book},pdfauthor={learnbyexample},pdfsubject={pandoc},pdfkeywords={pandoc,pdf,xelatex}}
+
+\usepackage{tcolorbox}
+\newtcolorbox{myquote}{colback=gray!5!white, colframe=gray!75!black}
+\renewenvironment{quote}{\begin{myquote}}{\end{myquote}}
